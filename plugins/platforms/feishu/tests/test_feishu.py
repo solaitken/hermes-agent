@@ -4893,7 +4893,7 @@ class TestChatLockEviction(unittest.TestCase):
     def _make_adapter(self, max_size=5):
         import collections as _collections
 
-        from gateway.platforms.feishu import FeishuAdapter
+        from hermes_agent_feishu.adapter import FeishuAdapter
 
         adapter = object.__new__(FeishuAdapter)
         adapter._chat_locks = _collections.OrderedDict()

@@ -331,7 +331,7 @@ def _resolve_managed_fal_video_gateway():
 def _get_managed_fal_video_client(managed_gateway):
     """Reuse the managed FAL client so its internal httpx.Client is not leaked per call."""
     global _managed_fal_video_client, _managed_fal_video_client_config
-    from tools.fal_common import _ManagedFalSyncClient
+    from hermes_agent_fal.fal_common import _ManagedFalSyncClient
 
     client_config = (
         managed_gateway.gateway_origin.rstrip("/"),
@@ -370,7 +370,7 @@ def _submit_fal_video_request(endpoint: str, arguments: Dict[str, Any]):
             headers=request_headers,
         )
     except Exception as exc:
-        from tools.fal_common import _extract_http_status
+        from hermes_agent_fal.fal_common import _extract_http_status
 
         status = _extract_http_status(exc)
         if status is not None and 400 <= status < 500:

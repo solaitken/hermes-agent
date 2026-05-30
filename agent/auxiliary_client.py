@@ -4420,6 +4420,21 @@ def _get_task_extra_body(task: str) -> Dict[str, Any]:
 
 # Providers that use Anthropic-compatible endpoints (via OpenAI SDK wrapper).
 # Their image content blocks must use Anthropic format, not OpenAI format.
+_ANTHROPIC_COMPAT_PROVIDERS = frozenset({"minimax", "minimax-oauth", "minimax-cn"})
+
+
+def _is_anthropic_compat_endpoint(provider: str, base_url: str) -> bool:
+    """Detect if an endpoint expects Anthropic-format content blocks.
+
+    Returns True for known Anthropic-compatible providers (MiniMax) and
+    any endpoint whose URL contains ``/anthropic`` in the path.
+    """
+    if provider in _ANTHROPIC_COMPAT_PROVIDERS:
+        return True
+    url_lower = (base_url or "").lower()
+    return "/anthropic" in url_lower
+
+
 def _build_call_kwargs(
     provider: str,
     model: str,

@@ -157,7 +157,7 @@ class TestTelegramModelPicker:
         which is robust to whether `telegram` is the real SDK or the module
         mock (the SDK markup objects don't expose a plain iterable under the
         mock)."""
-        import gateway.platforms.telegram as tg
+        import hermes_agent_telegram.adapter as tg
 
         built: list = []
 

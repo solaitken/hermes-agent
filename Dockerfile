@@ -154,6 +154,29 @@ RUN npm install --prefer-offline --no-audit && \
 #
 # The editable link is created after the source copy below.
 COPY pyproject.toml uv.lock ./
+# Workspace member pyproject.toml files must be present for uv to resolve
+# the plugin extras.  We copy the minimal structure needed; full source
+# comes in the source COPY below.
+COPY plugins/dashboard/pyproject.toml plugins/dashboard/
+COPY plugins/image_gen/fal_pkg/pyproject.toml plugins/image_gen/fal_pkg/
+COPY plugins/memory/hindsight/pyproject.toml plugins/memory/hindsight/
+COPY plugins/memory/honcho/pyproject.toml plugins/memory/honcho/
+COPY plugins/model-providers/anthropic/pyproject.toml plugins/model-providers/anthropic/
+COPY plugins/model-providers/azure-foundry/pyproject.toml plugins/model-providers/azure-foundry/
+COPY plugins/model-providers/bedrock/pyproject.toml plugins/model-providers/bedrock/
+COPY plugins/platforms/dingtalk/pyproject.toml plugins/platforms/dingtalk/
+COPY plugins/platforms/discord/pyproject.toml plugins/platforms/discord/
+COPY plugins/platforms/feishu/pyproject.toml plugins/platforms/feishu/
+COPY plugins/platforms/matrix/pyproject.toml plugins/platforms/matrix/
+COPY plugins/platforms/slack/pyproject.toml plugins/platforms/slack/
+COPY plugins/platforms/telegram/pyproject.toml plugins/platforms/telegram/
+COPY plugins/stt/pyproject.toml plugins/stt/
+COPY plugins/terminals/daytona/pyproject.toml plugins/terminals/daytona/
+COPY plugins/terminals/modal/pyproject.toml plugins/terminals/modal/
+COPY plugins/tts/pyproject.toml plugins/tts/
+COPY plugins/web/exa/pyproject.toml plugins/web/exa/
+COPY plugins/web/firecrawl/pyproject.toml plugins/web/firecrawl/
+COPY plugins/web/parallel/pyproject.toml plugins/web/parallel/
 RUN touch ./README.md
 RUN uv sync --frozen --no-install-project --extra all --extra anthropic --extra bedrock --extra azure-identity
 

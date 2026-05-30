@@ -60,7 +60,8 @@ def test_plugin_extras_are_workspace_member_refs():
         "daytona", "modal",
         "telegram", "slack", "dingtalk", "feishu", "matrix",
         "dashboard",
-        "mistral",  # mistralai — Voxtral STT/TTS, lazy-installed (stt.mistral / tts.mistral)
+        # "mistral" is intentionally excluded — it's an inline dep spec
+        # (mistralai==2.4.8), not a workspace member plugin package.
     }
 
     for extra in plugin_extras:
